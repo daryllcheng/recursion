@@ -7,4 +7,16 @@
 var getElementsByClassName = function(className
 ) {
   // your code here
+  var elementsWithClassName = [];
+
+  var filterElementsByClassName = function(node) {
+  	if (_(node.classList).contains(className)) {
+  		elementsWithClassName.push(node);
+  	}
+  	node.childNodes.forEach(function(childNode) {
+  		filterElementsByClassName(childNode);
+  	})
+  }
+  filterElementsByClassName(document.body);
+  return elementsWithClassName;
 };
